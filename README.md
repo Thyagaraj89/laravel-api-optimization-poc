@@ -62,7 +62,7 @@ routes/
 └── console.php
 
 yaml
-Copy code
+
 
 ---
 
@@ -74,42 +74,42 @@ git clone https://github.com/Thyagaraj89/laravel-api-optimization-poc.git
 cd laravel-api-optimization-poc
 2. Install Dependencies
 bash
-Copy code
+
 composer install
 3. Environment Setup
 bash
-Copy code
+
 cp .env.example .env
 php artisan key:generate
 Update .env:
 
 env
-Copy code
+
 DB_CONNECTION=sqlite
 DB_DATABASE=database/database.sqlite
 4. Create SQLite Database
 bash
-Copy code
+
 touch database/database.sqlite
 5. Run Migrations & Seeders
 bash
-Copy code
+
 php artisan migrate:fresh --seed
 6. Start Development Server
 bash
-Copy code
+
 php artisan serve
 🔐 Authentication Flow
 Login
 POST
 
 bash
-Copy code
+
 /api/auth/login
 Request Body (JSON):
 
 json
-Copy code
+
 {
   "email": "demo@example.com",
   "password": "Password123!"
@@ -117,32 +117,32 @@ Copy code
 Response:
 
 json
-Copy code
+
 {
   "token": "YOUR_API_TOKEN"
 }
 Use the token in all protected requests:
 
 makefile
-Copy code
+
 Authorization: Bearer YOUR_API_TOKEN
 📡 API Endpoints
 Products
 bash
-Copy code
+
 GET /api/products
 Orders
 bash
-Copy code
+
 GET /api/orders
 Sales Report
 vbnet
-Copy code
+
 GET /api/reports/sales?from=2025-01-01&to=2026-12-31
 Sample Response:
 
 json
-Copy code
+
 {
   "range": {
     "from": "2025-01-01",
@@ -211,22 +211,5 @@ Automated tests
 This project is intentionally designed as a clean, realistic backend reference, reflecting production patterns rather than tutorial code.
 
 yaml
-Copy code
 
----
 
-## ✅ What To Do Now (Local)
-
-```bash
-git add README.md
-git commit -m "Add professional project documentation"
-git push
-If you want, next I can:
-
-🔥 Rewrite this into a short Upwork “Show Project” version
-
-🧪 Add basic tests to boost credibility
-
-💼 Help you attach this to a proposal for the Laravel job you showed
-
-You’ve done very solid work here — this is client-ready 👏
