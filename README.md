@@ -1,148 +1,159 @@
 # Laravel API Optimization POC
 
-A production-style **Laravel REST API Proof of Concept** demonstrating **secure authentication, optimized database queries, reporting endpoints, and clean API architecture**.
+A production-style **Laravel REST API Proof of Concept** showcasing secure authentication, optimized queries, and reporting endpoints.
 
-This project simulates a real-world backend used by internal dashboards, admin panels, or frontend applications that require **fast, secure, and maintainable APIs**.
+This project simulates a real-world backend commonly used for internal dashboards or frontend applications that require fast, secure, and maintainable APIs.
 
 ---
 
-## ✨ Key Features
+## Features
 
-### 🔐 API Authentication
-- Token-based authentication using **Laravel Sanctum**
-- Secure login endpoint
-- Protected API routes with `auth:sanctum`
-
-### 📦 Core API Modules
-- Products API (paginated)
+- Token-based authentication using Laravel Sanctum
+- Products API with pagination
 - Orders API with nested order items
-- Sales reporting API with date range filters
-
-### ⚡ Performance & Optimization
-- Eager loading to prevent N+1 queries
-- Optimized aggregation queries for reports
-- Pagination for large datasets
-- Clean separation of controllers, models, and routes
-
-### 🧪 Demo Data Ready
-- SQLite database for zero-setup local testing
-- Seeded users, products, orders, and order items
-- Realistic sales data for reporting endpoints
+- Sales reporting API with date-range filtering
+- Optimized database queries
+- SQLite database with seeded demo data
 
 ---
 
-## 🧱 Tech Stack
+## Tech Stack
 
-- **Laravel 12**
-- **PHP 8.4**
-- **Laravel Sanctum**
-- **SQLite**
-- **RESTful API design**
-- **Postman for API testing**
+- Laravel 12
+- PHP 8.4
+- Laravel Sanctum
+- SQLite
+- RESTful API
 
 ---
 
-## 📂 Project Structure (Relevant Parts)
+## Project Structure
 
+```
 app/
-├── Http/Controllers/Api
-│ ├── AuthController.php
-│ ├── ProductController.php
-│ ├── OrderController.php
-│ └── ReportController.php
-├── Models
-│ ├── Product.php
-│ ├── Order.php
-│ ├── OrderItem.php
-│ └── User.php
+ └── Http/Controllers/Api/
+     ├── AuthController.php
+     ├── ProductController.php
+     ├── OrderController.php
+     └── ReportController.php
+
+app/Models/
+ ├── User.php
+ ├── Product.php
+ ├── Order.php
+ └── OrderItem.php
+
+database/
+ ├── migrations/
+ └── seeders/
+     ├── DatabaseSeeder.php
+     └── DemoSeeder.php
 
 routes/
-├── api.php
-├── web.php
-└── console.php
-
-yaml
-
+ ├── api.php
+ ├── web.php
+ └── console.php
+```
 
 ---
 
-## ⚙️ Local Setup
+## Local Setup
 
-### 1. Clone Repository
-```bash
+### Clone Repository
+```
 git clone https://github.com/Thyagaraj89/laravel-api-optimization-poc.git
 cd laravel-api-optimization-poc
-2. Install Dependencies
-bash
+```
 
+### Install Dependencies
+```
 composer install
-3. Environment Setup
-bash
+```
 
+### Environment Setup
+```
 cp .env.example .env
 php artisan key:generate
-Update .env:
+```
 
-env
-
+Edit `.env`:
+```
 DB_CONNECTION=sqlite
 DB_DATABASE=database/database.sqlite
-4. Create SQLite Database
-bash
+```
 
+### Create SQLite Database
+```
+mkdir -p database
 touch database/database.sqlite
-5. Run Migrations & Seeders
-bash
+```
 
+### Run Migrations & Seeders
+```
 php artisan migrate:fresh --seed
-6. Start Development Server
-bash
+```
 
+### Start Development Server
+```
 php artisan serve
-🔐 Authentication Flow
-Login
-POST
+```
 
-bash
+Application will be available at:
+```
+http://127.0.0.1:8000
+```
 
-/api/auth/login
-Request Body (JSON):
+---
 
-json
+## Authentication
 
+### Login
+```
+POST /api/auth/login
+```
+
+Request Body:
+```
 {
   "email": "demo@example.com",
   "password": "Password123!"
 }
+```
+
 Response:
-
-json
-
+```
 {
   "token": "YOUR_API_TOKEN"
 }
-Use the token in all protected requests:
+```
 
-makefile
-
+Use this token for all protected endpoints:
+```
 Authorization: Bearer YOUR_API_TOKEN
-📡 API Endpoints
-Products
-bash
+Accept: application/json
+```
 
+---
+
+## API Endpoints
+
+### Products
+```
 GET /api/products
-Orders
-bash
+```
 
+### Orders
+```
 GET /api/orders
-Sales Report
-vbnet
+```
 
+### Sales Report
+```
 GET /api/reports/sales?from=2025-01-01&to=2026-12-31
+```
+
 Sample Response:
-
-json
-
+```
 {
   "range": {
     "from": "2025-01-01",
@@ -158,58 +169,39 @@ json
     }
   ]
 }
-🧠 Design Considerations
-API-only architecture (no Blade views)
+```
 
-Centralized authentication handling
+---
 
-Clean error handling for API consumers
+## Screenshots
 
-Scalable structure for caching, queues, or async jobs
+Authentication  
+![Login](screenshots/login.png)
 
-Suitable for frontend frameworks or mobile apps
+Products API  
+![Products](screenshots/products.png)
 
-🎯 Intended Use Cases
-Internal admin dashboards
+Orders API  
+![Orders](screenshots/orders.png)
 
-Headless backend APIs
+Sales Report  
+![Sales Report](screenshots/sales-report.png)
 
-Reporting and analytics services
+Logs
+![Logs](screenshots/logs.png)
 
-Laravel performance optimization reference
+---
 
-Freelance portfolio / technical assessment project
+## Design Notes
 
-👤 Author
-Thyagaraj Thanaraj
-Senior Backend / Full-Stack Engineer
+- API-only backend (no Blade views)
+- Clean separation of controllers, models, and routes
+- Optimized queries to avoid N+1 problems
 
-Laravel & PHP
+---
 
-.NET & C#
+## Author
 
-API Design & Optimization
-
-Cloud & Automation
-
-GitHub:
-https://github.com/Thyagaraj89
-
-🚀 Possible Enhancements
-Redis caching
-
-Rate limiting
-
-API Resource transformers
-
-OpenAPI / Swagger documentation
-
-Docker support
-
-Automated tests
-
-This project is intentionally designed as a clean, realistic backend reference, reflecting production patterns rather than tutorial code.
-
-yaml
-
-
+**Thyagaraj Thanaraj**  
+Senior Backend / Full-Stack Engineer  
+GitHub: https://github.com/Thyagaraj89
